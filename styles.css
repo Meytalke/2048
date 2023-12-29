@@ -1,0 +1,98 @@
+body
+{
+  font-family: Arial, Helvetica, sans-serif;
+  text-align: center;
+}
+
+hr
+{
+  width: 500px;
+}
+
+#board
+{
+  width: 400px;
+  height: 400px;
+  background-color: #CDC1B5;
+  border: 6px solid #BBADA0;
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.tile
+{
+  width: 90px;
+  height: 90px;
+  border: 5px solid #BBADA0;
+  font-size: 40px;
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.x2
+{
+  background-color: #EEE4DA;
+  color: #727371;
+}
+.x4
+{
+  background-color: #ECE0CA;
+  color: #727371;
+}
+.x8
+{
+  background-color: #F4B17A;
+  color: #FFF;
+}
+.x16
+{
+  background-color: #F59575;
+  color: #FFF;
+}
+.x32
+{
+  background-color: #F57C5F;
+  color: #FFF;
+}
+.x64
+{
+  background-color: #F65D3B;
+  color: #FFF;
+}
+.x128
+{
+  background-color: #EDCE71;
+  color: #FFF;
+}
+.x256
+{
+  background-color: #EDCC63;
+  color: #FFF;
+}
+.x512
+{
+  background-color: #EDC651;
+  color: #FFF;
+}
+.x1024
+{
+  background-color: #EEC744;
+  color: #FFF;
+}
+.x2048
+{
+  background-color: #ECC230;
+  color: #FFF;
+}
+.x4096
+{
+  background-color: #FE3D3D;
+  color: #FFF;
+}
+.x8192
+{
+  background-color: #FF2020;
+  color: #FFF;
+}
