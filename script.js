@@ -12,10 +12,10 @@ function setGame()
 {
   let r,c,tile,num;
   board = [
-    [0,0,0,0],
-    [0,0,0,0],
-    [0,0,0,0],
-    [0,0,0,0]
+    [0, 0, 0, 0],
+    [0, 0, 0, 0],
+    [0, 0, 0, 0],
+    [0, 0, 0, 0]
   ]
   for(r = 0; r < rows; r++)
   {
@@ -87,6 +87,7 @@ function hasEmptyTile()
   }
   return false;
 }
+
 function setTwo()
 {
   if (!hasEmptyTile() && !hasValidMove()) {
@@ -132,7 +133,8 @@ function updateTile(tile,num)
     }
     else
     {
-      tile.classList.add("x8192");
+      alert("Game Over! No more moves available.");
+      resetGame();
     }
   }
 }
@@ -141,22 +143,22 @@ document.addEventListener("keyup", (e) =>
 {
   if(e.code == "ArrowLeft")
   {
-    slideLeft();
+    slideLeftRight("Left");
     setTwo();
   }
   else if(e.code == "ArrowRight")
   {
-    slideRight();
+    slideLeftRight("Right");
     setTwo();
   }
   else if(e.code == "ArrowUp")
   {
-    slideUp();
+    slideUpDown("Up");
     setTwo();
   }
   else if(e.code == "ArrowDown")
   {
-    slideDown();
+    slideUpDown("Down");
     setTwo();
   }
   document.getElementById("score").innerText = score
@@ -187,13 +189,21 @@ function slide(row)
   }
   return row;
 }
-function slideLeft()
+function slideLeftRight(direction)
 {
   let r,c,row,tile,num;
   for(r = 0 ; r < rows ; r++)
   {
     row = board[r];
+    if(direction === "Right")
+    {
+      row.reverse();
+    }
     row = slide(row);
+    if(direction === "Right")
+    {
+      row.reverse();
+    }
     board[r]=row;
     for(c = 0 ; c < columns ; c++)
     {
@@ -204,48 +214,22 @@ function slideLeft()
   }
 }
 
-function slideRight()
+
+function slideUpDown(direction) 
 {
-  let r,c,row,tile,num;
-  for(r = 0 ; r < rows ; r++)
+  let c, r, tile, num;
+  for (c = 0; c < columns; c++) 
   {
-    row = board[r];
-    row.reverse();
-    row = slide(row);
-    row.reverse();
-    board[r]=row;
-    for(c = 0 ; c < columns ; c++)
+    let row = [board[0][c], board[1][c], board[2][c], board[3][c]];
+    if(direction === "Down")
     {
-      tile = document.getElementById(r.toString() + "-" + c.toString());
-      num = board[r][c];
-      updateTile(tile,num);
+      row.reverse();
     }
-  }
-}
-
-function slideUp() {
-  let c, r, tile, num;
-  for (c = 0; c < columns; c++) {
-    let row = [board[0][c], board[1][c], board[2][c], board[3][c]];
-    console.log('row:', row);
     row = slide(row);
-    for (r = 0; r < rows; r++) {
-      board[r][c] = row[r];
-      tile = document.getElementById(r.toString() + "-" + c.toString());
-      num = board[r][c];
-      updateTile(tile, num);
+    if(direction === "Down")
+    {
+      row.reverse();
     }
-  }
-}
-
-function slideDown() {
-  let c, r, tile, num;
-  for (c = 0; c < columns; c++) {
-    let row = [board[0][c], board[1][c], board[2][c], board[3][c]];
-    console.log('row:', row);
-    row.reverse();
-    row = slide(row);
-    row.reverse();
     for (r = 0; r < rows; r++) {
       board[r][c] = row[r];
       tile = document.getElementById(r.toString() + "-" + c.toString());
